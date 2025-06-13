@@ -235,18 +235,18 @@ if monto_cop > 0 and valor_tmr:
         )
 
         # Botón para exportar a Excel
-        if st.button("Exportar a Excel"):
+       # if st.button("Exportar a Excel"):
             # Obtener la ruta de la carpeta de descargas
-            downloads_path = str(Path.home() / "Downloads")
+        #    downloads_path = str(Path.home() / "Downloads")
             # Crear el nombre del archivo con timestamp
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f"desglose_{timestamp}.xlsx"
+        #    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        #    filename = f"desglose_{timestamp}.xlsx"
             # Ruta completa del archivo
-            file_path = os.path.join(downloads_path, filename)
+        #    file_path = os.path.join(downloads_path, filename)
             
             # Exportar el archivo usando pandas
-            desglose.to_excel(file_path, index=False, engine='xlsxwriter')
-            st.success(f"Archivo exportado exitosamente a: {file_path}")
+        #   desglose.to_excel(file_path, index=False, engine='xlsxwriter')
+        #    st.success(f"Archivo exportado exitosamente a: {file_path}")
 
 # Pie de página con información adicional
 st.markdown("---")
