@@ -3,7 +3,6 @@ import pandas as pd
 import requests
 from datetime import datetime
 import json
-from openpyxl import reader, load_workbook, Workbook
 import os
 from pathlib import Path
 
@@ -245,8 +244,8 @@ if monto_cop > 0 and valor_tmr:
             # Ruta completa del archivo
             file_path = os.path.join(downloads_path, filename)
             
-            # Exportar el archivo
-            desglose.to_excel(file_path, index=False)
+            # Exportar el archivo usando pandas
+            desglose.to_excel(file_path, index=False, engine='xlsxwriter')
             st.success(f"Archivo exportado exitosamente a: {file_path}")
 
 # Pie de página con información adicional
