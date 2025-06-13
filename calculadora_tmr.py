@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 from datetime import datetime
 import json
-import openpyxl
+from openpyxl import reader, load_workbook, Workbook
 import os
 from pathlib import Path
 
