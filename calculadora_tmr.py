@@ -5,6 +5,7 @@ from datetime import datetime
 import json
 import os
 from pathlib import Path
+from xlsxwriter import Workbook
 
 # Configuración de la página
 st.set_page_config(
