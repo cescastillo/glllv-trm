@@ -252,7 +252,7 @@ if monto_cop > 0 and valor_tmr:
 st.markdown("---")
 st.markdown("""
     <div style='text-align: center'>
-        <p>Desarrollado con ❤️ usando Streamlit</p>
+        <p>Desarrollado usando Streamlit</p>
         <p style='font-size: 0.8em; color: #666;'>Última actualización: {}</p>
     </div>
 """.format(datetime.now().strftime("%Y-%m-%d")), unsafe_allow_html=True) 
