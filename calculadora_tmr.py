@@ -53,21 +53,23 @@ logoGllv = "./assets/GLLV Logo.png"
 
 # Función para obtener el TMR del día
 def obtener_tmr():
-    try:
+    #try:
         # URL de la API del Banco de la República (Colombia)
-        url = "https://www.datos.gov.co/resource/32sa-8pi3.json"
-        response = requests.get(url)
-        data = response.json()
+     #   url = "https://www.datos.gov.co/resource/32sa-8pi3.json"
+     #  response = requests.get(url)
+     #   data = response.json()
         
-        # Obtener el último registro (TMR más reciente)
-        ultimo_registro = data[0]
-        fecha = ultimo_registro['vigenciadesde']
-        valor = float(ultimo_registro['valor'])
-        
+     #   # Obtener el último registro (TMR más reciente)
+     #   ultimo_registro = data[0]
+     #   fecha = ultimo_registro['vigenciadesde']
+     #   valor = float(ultimo_registro['valor'])
+        fecha = datetime.now().strftime("%Y-%m-%d")
+        valor = 3800.0
         return fecha, valor
-    except Exception as e:
-        st.error(f"Error al obtener el TRM: {str(e)}")
-        return None, None
+
+   # except Exception as e:
+   #     st.error(f"Error al obtener el TRM: {str(e)}")
+   #     return None, None
 
 def toggle_editable():
     st.session_state.editable = not st.session_state.editable
