@@ -64,7 +64,7 @@ def obtener_tmr():
      #   fecha = ultimo_registro['vigenciadesde']
      #   valor = float(ultimo_registro['valor'])
         fecha = datetime.now().strftime("%Y-%m-%d")
-        valor = 3800.0
+        valor = 3500.0
         return fecha, valor
 
    # except Exception as e:
