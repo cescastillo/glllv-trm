@@ -24,6 +24,8 @@ if 'poliza_vida' not in st.session_state:
     st.session_state.poliza_vida = 18250
 if 'porcentaje_comision' not in st.session_state:
     st.session_state.porcentaje_comision = 15.0
+if 'aux_transporte' not in st.session_state:
+    st.session_state.aux_transporte = 0
 
 # Estilos CSS personalizados
 st.markdown("""
@@ -108,6 +110,13 @@ with st.expander("Valores Adicionales", expanded=False):
             disabled=not st.session_state.editable
         )
     with col2:
+        st.session_state.aux_transporte = st.number_input(
+            "Auxilio de transporte",
+
+            value=st.session_state.aux_transporte,
+            
+            disabled=not st.session_state.editable
+        )
         st.session_state.poliza_vida = st.number_input(
             "Poliza de vida",
             value=st.session_state.poliza_vida,
@@ -135,7 +144,7 @@ with st.expander("Valores Adicionales", expanded=False):
 st.subheader("Resultados")
 if monto_cop > 0 and valor_tmr:
     # Cálculos
-    aux_transporte = 0
+    aux_transporte = st.session_state.aux_transporte
     salud = monto_cop * 0.12
     pension = monto_cop * 0.12
     arl = monto_cop * 0.00522
@@ -163,7 +172,7 @@ if monto_cop > 0 and valor_tmr:
         vacaciones
     ) + monto_cop
 
-    costo = (st.session_state.coworking + st.session_state.med_prepagada + st.session_state.poliza_vida) + costo_total
+    costo = (st.session_state.coworking + st.session_state.med_prepagada + st.session_state.poliza_vida + st.session_state.aux_transporte) + costo_total
     gllv_fee = round(costo * (st.session_state.porcentaje_comision/100))
     costo_total_mensual = round(gllv_fee + costo)
     costo_total_mensual_USD = round(costo_total_mensual/valor_tmr)
@@ -199,15 +208,14 @@ if monto_cop > 0 and valor_tmr:
         desglose = pd.DataFrame({
             'Concepto': [
                 'Salario', 'TRM',
-                'Auxilio de transporte', 'Salud', 'Pensión', 'ARL', 'Sena', 'ICBF', 
+                'Salud', 'Pensión', 'ARL', 'Sena', 'ICBF', 
                 'Caja de Compensación', 'Primas', 'Cesantías', 'Int. Cesantías', 
-                'Vacaciones','Coworking', 'Medicina prepagada', 'Poliza de vida', 
+                'Vacaciones', 'Coworking', 'Medicina prepagada', 'Poliza de vida',
                 'Gllv Fee', 'Costo Total Mensual', 'Costo Total Mensual USD'
             ],
             'Valor': [
                 f"${monto_cop:,.2f}",
                 f"${valor_tmr:,.2f}",
-                f"${aux_transporte:,.2f}",
                 f"${salud:,.2f}",
                 f"${pension:,.2f}",
                 f"${arl:,.2f}",
@@ -218,11 +226,9 @@ if monto_cop > 0 and valor_tmr:
                 f"${cesantias:,.2f}",
                 f"${int_cesantias:,.2f}",
                 f"${vacaciones:,.2f}",
-                
                 f"${st.session_state.coworking:,.2f}",
                 f"${st.session_state.med_prepagada:,.2f}",
                 f"${st.session_state.poliza_vida:,.2f}",
-                
                 f"${gllv_fee:,.2f}",
                 f"${costo_total_mensual:,.2f}",
                 f"${costo_total_mensual_USD:,.2f}"
@@ -258,3 +264,4 @@ st.markdown("""
         <p style='font-size: 0.8em; color: #666;'>Última actualización: {}</p>
     </div>
 """.format(datetime.now().strftime("%Y-%m-%d")), unsafe_allow_html=True) 
+
