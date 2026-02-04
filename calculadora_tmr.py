@@ -25,7 +25,7 @@ if 'poliza_vida' not in st.session_state:
 if 'porcentaje_comision' not in st.session_state:
     st.session_state.porcentaje_comision = 15.0
 if 'aux_transporte' not in st.session_state:
-    st.session_state.aux_transporte = 0
+    st.session_state.aux_transporte = 249095
 
 # Estilos CSS personalizados
 st.markdown("""
